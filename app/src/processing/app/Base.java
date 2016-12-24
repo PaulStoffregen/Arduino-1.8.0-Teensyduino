@@ -120,8 +120,11 @@ public class Base {
   private final List<JMenuItem> recentSketchesMenuItems = new LinkedList<>();
 
   static public void main(String args[]) throws Exception {
-    System.setProperty("awt.useSystemAAFontSettings", "on");
-    System.setProperty("swing.aatext", "true");
+     // https://github.com/arduino/Arduino/issues/5750
+     if (!OSUtils.isWindows()) {
+       System.setProperty("awt.useSystemAAFontSettings", "on");
+       System.setProperty("swing.aatext", "true");
+     }
     System.setProperty("java.net.useSystemProxies", "true");
 
     if (OSUtils.isMacOS()) {
